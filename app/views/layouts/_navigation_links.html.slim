@@ -2,5 +2,6 @@ li= link_to 'Info', info_path
 li= link_to 'Full User List', users_path
 - if can? :create, User
   li= link_to "Tickets", tickets_path
+  li= link_to "Surveys", surveys_path
 li= link_to "Logout", logout_path
 li= link_to "My Account", edit_user_path(current_user)

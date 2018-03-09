@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803041543) do
+ActiveRecord::Schema.define(version: 20170810040916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20170803041543) do
   end
 
   add_index "camp_scores", ["user_id"], name: "index_camp_scores_on_user_id", using: :btree
+
+  create_table "surveys", force: :cascade do |t|
+    t.string   "url_formula"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.integer  "user_id"

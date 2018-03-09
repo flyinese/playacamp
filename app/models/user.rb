@@ -35,6 +35,16 @@ class User < ActiveRecord::Base
     legacy_camp_score + camp_scores.collect{|c| c.score}.inject(0, :+)
   end
 
+  def surveys
+    Hash[Survey.all.collect do |survey|
+      url = survey.url_formula
+      attributes.each do |k,v|
+        url.gsub! "USER__#{k}__USER", v.to_s
+      end
+      [survey.name, url]
+    end]
+  end
+
   def self.upsert_from_csv_entry entry
     errors = []
     entry["E-mail"] ||= ""
@@ -44,7 +54,7 @@ class User < ActiveRecord::Base
       location: entry["Location"],
       legacy_camp_score: entry["Master Score"] || 0,
       status: entry["Status"].downcase,
-      birthday: Date.strptime(entry["Birthday"], "%m/%d/%Y"),
+      birthday: (Date.strptime(entry["Birthday"], "%m/%d/%Y") rescue nil),
       gender: entry["Gender"],
       years: (entry["Years"]||"").split(', '),
       work_unit: entry["Work Unit"], #TODO: Work unit as part of yearly review

@@ -18,6 +18,12 @@
     = f.text_field :location
   .field
     = f.text_field :facebook
+  - if current_user == @user || can?(:create, User)
+    p
+      strong Camp Surveys:
+      - @user.surveys.each do |name, link|
+        br
+        a(href=link)= name
   - if can? :create, User
     .fields
       = f.number_field :needed_tickets

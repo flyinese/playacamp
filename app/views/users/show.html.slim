@@ -28,6 +28,13 @@ p
   strong Stuff:
   - @user.stuffpics.each do |stuffpic|
     = image_tag stuffpic
+    
+- if current_user == @user || can?(:create, User)
+  p
+    strong Camp Surveys:
+    - @user.surveys.each do |name, link|
+      br
+      a(href=link)= name
 
 = link_to 'Edit', edit_user_path(@user)
 '|
