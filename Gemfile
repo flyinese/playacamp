@@ -19,7 +19,7 @@ gem 'bcrypt'
 gem 'cancancan'
 gem 'paper_trail', '>= 4.0.0'
 
-gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'byebug'
@@ -30,7 +30,7 @@ end
 gem 'bootstrap-sass'
 gem 'figaro', '>= 1.0.0.rc1'
 gem 'high_voltage'
-gem 'pg'
+gem 'pg', '~> 0.15'
 gem 'sendgrid'
 gem 'slim-rails'
 
